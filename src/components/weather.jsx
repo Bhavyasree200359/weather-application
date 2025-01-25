@@ -2,7 +2,7 @@
 
 
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function Weather() {
   const api = {
     key: "2d8f4848c77410c6ed177c3a2bb65245",
@@ -13,6 +13,11 @@ function Weather() {
   const [weather,setWeather]=useState({
 
   });
+  const navigate=useNavigate();
+  const handleClick=()=>{
+    navigate("/map")
+    
+  }
 
   const searchPressed = () => {
    fetch(`${api.base}weather?q=${search}&units=metrics&APPID=${api.key}`)
@@ -61,7 +66,7 @@ const getDayText = (index) => {
           />
           <div>Cities</div>
         </div>
-        <div className="div13">
+        <div onClick={handleClick} className="div13">
           <img
             className="map-img"
             src="https://cdn-icons-png.flaticon.com/512/592/592245.png"
